@@ -27,7 +27,7 @@ class Solution(object):
             dfs(root.left,max(root.val,curr_max))
             dfs(root.right,max(root.val,curr_max))
 
-        dfs(root,root.val)
+        dfs(root, float('-inf'))
 
         return self.ans
 

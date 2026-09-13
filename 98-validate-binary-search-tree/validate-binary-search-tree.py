@@ -19,7 +19,6 @@ class Solution(object):
             if self.flag == False or root is None:
                 return
 
-
             if not (min_val < root.val < max_val):
                 self.flag = False
                 return
@@ -27,7 +26,7 @@ class Solution(object):
             dfs(root.left,min_val, root.val)
             dfs(root.right,root.val, max_val)
 
-        dfs(root,-float('infinity'),float('infinity'))
+        dfs(root,float('-inf'), float('inf'))
 
 
         return self.flag

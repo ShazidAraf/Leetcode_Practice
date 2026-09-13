@@ -27,9 +27,7 @@ class Solution(object):
 
             if self.count==k:
                 self.ans = root.val
-
-
-
+                return
             dfs(root.right)
         
         

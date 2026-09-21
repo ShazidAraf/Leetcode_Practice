@@ -18,6 +18,9 @@ class Solution(object):
                 res.append(copy.deepcopy(curr_res))
                 return
 
+            if i>len(candidates)-1 or curr_sum>target:
+                return
+
             for j in range(i,len(candidates)):
 
                 if curr_sum + candidates[j]> target:

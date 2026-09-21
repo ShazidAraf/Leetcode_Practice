@@ -8,6 +8,8 @@ class Solution(object):
         """
         res = []
 
+        candidates.sort()
+
 
         def dfs(i,curr_res, curr_sum):
 

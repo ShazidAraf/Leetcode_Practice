@@ -14,6 +14,10 @@ class Solution(object):
 
         def dfs(i, curr):
             res.append(curr[:])   
+
+            if i>len(nums)-1:
+                return
+                
             for j in range(i, len(nums)):
                 curr.append(nums[j])
                 dfs(j + 1, curr)

@@ -17,7 +17,7 @@ class Solution(object):
                 if i>=j:
                     dp[i] = min(dp[i],1+dp[i-j])
 
-        print(dp)
+        # print(dp)
 
 
         if dp[-1]==float('inf'):

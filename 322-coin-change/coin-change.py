@@ -7,7 +7,7 @@ class Solution(object):
         """
 
 
-        dp = [amount+1]*(amount+1)
+        dp = [float('inf')]*(amount+1)
 
         dp[0] = 0
 
@@ -20,7 +20,7 @@ class Solution(object):
         print(dp)
 
 
-        if dp[-1]==amount+1:
+        if dp[-1]==float('inf'):
             return -1
         else:
             return dp[-1]

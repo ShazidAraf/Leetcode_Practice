@@ -11,10 +11,16 @@ class Solution(object):
 
         dp[0] = 0
 
-        for i in range(1,amount+1):
-            for c in coins:
-                if i-c>=0:
-                    dp[i] = min(dp[i],1+dp[i-c])
+        # for i in range(1,amount+1):
+        #     for c in coins:
+        #         if i-c>=0:
+        #             dp[i] = min(dp[i],1+dp[i-c])
+
+        
+        for c in coins:
+            for i in range(c,amount+1):
+                dp[i] = min(dp[i],1+dp[i-c])
+
 
         if dp[-1]==amount+1:
             return -1

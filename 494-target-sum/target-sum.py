@@ -5,7 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-
+        total = sum(nums)
+        if abs(target) > total or (total + target) % 2:
+            return 0
         DP = {0:1}
 
 

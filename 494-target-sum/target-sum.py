@@ -5,32 +5,21 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        total = sum(nums)
-        if abs(target) > total or (total + target) % 2:
-            return 0
-        DP = {0:1}
 
+        dp = defaultdict(int)
+        dp[0] = 1
 
         for i in range(len(nums)):
+            newDP = defaultdict(int)
 
+            for curr_sum, count in dp.items():
+                
+                newDP[curr_sum + nums[i]] += count
+                newDP[curr_sum - nums[i]] += count
 
-            newDP = {}
+            dp = newDP
 
-            for k,v in DP.items():
-
-                if k+nums[i] not in newDP.keys():
-                    newDP[k+nums[i]] = 0
-                if k-nums[i] not in newDP.keys():
-                    newDP[k-nums[i]] = 0
-
-                newDP[k+nums[i]] += v
-                newDP[k-nums[i]] += v
-
-            DP = newDP
-
-            
-
-        return DP.get(target,0)
+        return dp.get(target,0)
 
 
             

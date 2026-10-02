@@ -7,14 +7,13 @@ class Solution(object):
 
         graph = {c: [] for word in words for c in word}   # changed: every letter is a key
 
-        for w1, w2 in zip(words, words[1:]):              # changed: compare neighboring words
+        for w1, w2 in zip(words, words[1:]):
+            if len(w1) > len(w2) and w1.startswith(w2):   # "abc" before "ab"
+                return ""
             for a, b in zip(w1, w2):
                 if a != b:
-                    graph[b].append(a)                    # b needs a first
-                    break                                 # only the first difference counts
-            else:
-                if len(w1) > len(w2):                     # "abc" before "ab" is invalid
-                    return ""
+                    graph[b].append(a)
+                    break
 
 
         # Detect if there is a cycle

@@ -1,5 +1,3 @@
-import numpy as np
-
 class Solution(object):
     def numIslands(self, grid):
         """
@@ -16,8 +14,7 @@ class Solution(object):
             if r<0 or c<0 or r>m-1 or c>n-1 or grid[r][c]=='0':
                 return
 
-            if grid[r][c]=='1':
-                grid[r][c] = '0'
+            grid[r][c] = '0'
 
             dfs(r-1,c)
             dfs(r+1,c)

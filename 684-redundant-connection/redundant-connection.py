@@ -31,6 +31,7 @@ class Solution(object):
                     return True
 
             visiting.remove(node)
+            visited.add(node)
 
             return False
 
@@ -41,6 +42,11 @@ class Solution(object):
 
             graph[a].append(b)
             graph[b].append(a)
+
+            visited.clear()
+
+            # visited.remove(a)
+            # visited.remove(b)
 
             if dfs(a,-1):
                 return [a,b]

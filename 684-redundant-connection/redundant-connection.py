@@ -14,6 +14,9 @@ class Solution(object):
 
         def dfs(node,parent):
 
+            if node in visited:
+                return False
+
             visiting.add(node)
 
             for nei in graph[node]:

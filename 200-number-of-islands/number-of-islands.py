@@ -25,11 +25,7 @@ class Solution(object):
             dfs(r,c+1)
 
 
-
-
-
         count=0
-
 
         for i in range(m):
             for j in range(n):

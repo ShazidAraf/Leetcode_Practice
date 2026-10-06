@@ -5,28 +5,28 @@ class Solution(object):
         :rtype: List[List[int]]
         """
 
+        rows, cols = len(heights), len(heights[0])
+        pac, atl = set(), set()
 
-        m, n = len(heights), len(heights[0])
-        MAP = [[set() for i in range(n)] for j in range(m)]
-        dirs = [[-1,0],[1,0],[0,1],[0,-1]]
+        def dfs(r, c, seen, prev):
 
-        def dfs(r, c, ocean):
-            MAP[r][c].add(ocean)
-            for dx, dy in dirs:
-                nx, ny = r + dx, c + dy
-                if 0 <= nx < m and 0 <= ny < n \
-                        and ocean not in MAP[nx][ny] \
-                        and heights[nx][ny] >= heights[r][c]:     # uphill
-                    dfs(nx, ny, ocean)
+            if (r, c) in seen or r < 0 or c < 0 or r >= rows or c >= cols:
+                return
+            if heights[r][c] < prev:
+                return
+            seen.add((r, c))
+            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                dfs(r + dr, c + dc, seen, heights[r][c])
 
-        for i in range(m):
-            dfs(i, 0, 'P')        # left edge
-            dfs(i, n-1, 'A')      # right edge
-        for j in range(n):
-            dfs(0, j, 'P')        # top edge
-            dfs(m-1, j, 'A')      # bottom edge
-
-        return [[r, c] for r in range(m) for c in range(n) if len(MAP[r][c]) == 2]
+        # seed each ocean from its whole border, corners belong to both and are seeded twice
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
+        for r in range(rows):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols - 1])
+        # a cell drains to both oceans exactly when both searches reached it
+        return [[r, c] for (r, c) in pac & atl]
 
 
         # m = len(heights)

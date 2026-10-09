@@ -7,18 +7,36 @@ class Solution(object):
         :rtype: int
         """
 
-        H1 = collections.defaultdict(list)
-        for u, v, w in times:
-            H1[u].append((v, w))              # forward edges
+        Graph = collections.defaultdict(list)
 
-        cost = {}                             # plain dict
-        def dfs(node, d):                     # d = time to reach node on this path
-            if node in cost and cost[node] <= d:
-                return                        # already reached faster
-            cost[node] = d
-            for nei, w in H1[node]:
-                dfs(nei, d + w)
 
-        dfs(k, 0)                             # actually call it
-        return -1 if len(cost) < n else max(cost.values())
+        for u,v,w in times:
+            Graph[u].append([v,w])
 
+
+        minheap = [[0,k]]
+        visit = set()
+        t = 0
+
+
+
+        while minheap:
+
+            path_cost,node = heapq.heappop(minheap)
+
+            if node in visit:
+                continue
+
+            visit.add(node)
+            t = max(t,path_cost)
+
+            for nei,cost in Graph[node]:
+
+                if nei in visit:
+                    continue
+                heapq.heappush(minheap, [path_cost + cost, nei])
+
+        if len(visit)<n:
+            return -1
+        else:
+            return t

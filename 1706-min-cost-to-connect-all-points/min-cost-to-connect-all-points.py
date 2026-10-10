@@ -9,7 +9,7 @@ class Solution(object):
         graph = {i:[] for i in range(n)}
 
         for i in range(n):
-            for j in range(i+1):
+            for j in range(i+1,n):
 
                 d = abs(points[i][0]-points[j][0]) + abs(points[i][1]-points[j][1])
                 graph[i].append([d,j])

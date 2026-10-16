@@ -43,7 +43,7 @@ class Codec:
         
 
         data = data.split(',')
-        print(data)
+        # print(data)
 
         if data[0]=='%':
             return None

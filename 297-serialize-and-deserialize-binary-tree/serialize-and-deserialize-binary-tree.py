@@ -46,7 +46,7 @@ class Codec:
         print(data)
 
         if data[0]=='%':
-            return []
+            return None
         
 
         root = TreeNode(int(data[0]))

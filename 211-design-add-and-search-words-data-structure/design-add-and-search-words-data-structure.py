@@ -37,30 +37,25 @@ class WordDictionary(object):
         
 
 
-        def dfs(curr,start):
-
-            for j in range(start,len(word)):
-
-                w = word[j]
+        def dfs(i,curr):
 
 
-                if w == '.':
-                    for child in curr.children.values():
-                        if dfs(child, j + 1):
-                            return True
-                    return False
+            if i==len(word):
+                return curr.finish
 
+            if word[i]=='.':
+                for child in curr.children.values():
+                    if dfs(i+1,child):
+                        return True
+                return False
 
-                if w not in curr.children:
-                    return False
+            if word[i] not in curr.children:
+                return False
 
-                curr = curr.children[w]
+            curr = curr.children[word[i]]
+            return dfs(i+1,curr)
 
-
-            return curr.finish
-
-        return dfs(self.root,0)
-
+        return dfs(0,self.root)
 
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()

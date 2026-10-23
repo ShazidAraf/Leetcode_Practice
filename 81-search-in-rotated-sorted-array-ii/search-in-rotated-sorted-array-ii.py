@@ -21,7 +21,7 @@ class Solution(object):
                 lo += 1
                 continue
 
-            if nums[lo]<nums[mid]:
+            if nums[lo]<=nums[mid]:
 
                 if nums[lo]<=target<nums[mid]:
 

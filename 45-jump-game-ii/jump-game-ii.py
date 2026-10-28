@@ -10,7 +10,7 @@ class Solution(object):
         jump = 0
         farthest = 0
 
-        while r<len(nums)-1:
+        while farthest<len(nums)-1:
 
 
             for i in range(l,r+1):

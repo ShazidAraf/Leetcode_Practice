@@ -17,9 +17,9 @@ class Solution(object):
             if curr_sum==target:
                 res.append(curr[:])
                 return
-                
-            if i>len(candidates)-1:
-                return
+
+            # if i>len(candidates)-1:
+            #     return
         
             for j in range(i,len(candidates)):
 

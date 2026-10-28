@@ -9,37 +9,31 @@ class Solution(object):
         """
 
         candidates.sort()
-
         res = []
 
-        def sum_check(i,curr,total):
+        def dfs(curr,curr_sum,i):
 
-            if total==target:
-                res.append(copy.deepcopy(curr))
+
+            if curr_sum==target:
+                res.append(curr[:])
                 return
-
-            if i>=len(candidates) or total>target:
+                
+            if i>len(candidates)-1:
                 return
-
+        
             for j in range(i,len(candidates)):
 
-                if j>i:
-                    if candidates[j-1]==candidates[j]:
-                        continue
+                if j>i and candidates[j]==candidates[j-1]:
+                    continue
 
-                if total + candidates[j] > target:
+                if curr_sum + candidates[j] > target:
                     break
 
-
-
                 curr.append(candidates[j])
-                sum_check(j+1, curr, total+candidates[j])
+                dfs(curr,curr_sum+candidates[j],j+1)
                 curr.pop()
 
-                
+        
+        dfs([],0,0)
 
-
-
-        sum_check(0,[],0)
         return res
-

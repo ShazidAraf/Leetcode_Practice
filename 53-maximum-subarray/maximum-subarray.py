@@ -11,9 +11,8 @@ class Solution(object):
         for i in range(len(nums)):
 
             s+=nums[i]
-            temp = [s,nums[i]]
-            max_sum = max(temp)
-            best = max(best,max_sum)
+            temp = [best,s,nums[i]]
+            best = max(temp)
 
             if s<0:
                 s = 0

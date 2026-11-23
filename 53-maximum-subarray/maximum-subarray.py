@@ -7,19 +7,12 @@ class Solution(object):
 
         best = nums[0]
         s = 0
-
-        for i in range(len(nums)):
-
-            s+=nums[i]
-            temp = [best,s,nums[i]]
-            best = max(temp)
-
-            if s<0:
+        for x in nums:
+            s += x
+            best = max(best, s)
+            if s < 0:
                 s = 0
-
-
         return best
-
 
 
         

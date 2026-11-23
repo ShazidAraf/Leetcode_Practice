@@ -5,20 +5,21 @@ class Solution(object):
         :rtype: int
         """
 
-        res = nums[0]
+        best = nums[0]
         s = 0
 
         for i in range(len(nums)):
 
             s+=nums[i]
-
-            res = max(res,s)
+            temp = [s,nums[i]]
+            max_sum = max(temp)
+            best = max(best,max_sum)
 
             if s<0:
                 s = 0
 
 
-        return res
+        return best
 
 
 
